@@ -8,5 +8,7 @@
     <dimen name="countdown_text_size">25sp</dimen>
     <dimen name="countdown_title_size">20sp</dimen>
 
+    <dimen name="divider_hor_margin">15dp</dimen>
+
     <dimen name="list_horizontal_margin">10dp</dimen>
 </resources>
