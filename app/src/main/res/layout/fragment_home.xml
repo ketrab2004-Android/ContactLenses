@@ -93,7 +93,8 @@
                         android:background="@android:drawable/progress_horizontal"
                         android:backgroundTint="?attr/colorControlHighlight"
 
-                        android:text="@string/home_reset_left" />
+                        android:text="@string/home_reset_left"
+                        android:onClick="setLeft"/>
 
 
                     <Button
@@ -109,7 +110,8 @@
                         android:background="@android:drawable/progress_horizontal"
                         android:backgroundTint="?attr/colorControlHighlight"
 
-                        android:text="@string/home_reset_right" />
+                        android:text="@string/home_reset_right"
+                        android:onClick="setRight"/>
                 </TableRow>
 
                 <TableRow
@@ -131,7 +133,8 @@
                         android:background="@android:drawable/progress_horizontal"
                         android:backgroundTint="?attr/colorControlHighlight"
 
-                        android:text="@string/home_stop_left" />
+                        android:text="@string/home_stop_left"
+                        android:onClick="stopLeft"/>
 
                     <Button
                         android:id="@+id/buttonDayRightStop"
@@ -146,7 +149,8 @@
                         android:background="@android:drawable/progress_horizontal"
                         android:backgroundTint="?attr/colorControlHighlight"
 
-                        android:text="@string/home_stop_right" />
+                        android:text="@string/home_stop_right"
+                        android:onClick="stopRight"/>
                 </TableRow>
 
             </TableLayout>
@@ -234,7 +238,8 @@
                         android:background="@android:drawable/progress_horizontal"
                         android:backgroundTint="?attr/colorControlHighlight"
 
-                        android:text="@string/home_reset_left_full" />
+                        android:text="@string/home_reset_left_full"
+                        android:onClick="resetLeft"/>
 
 
                     <Button
@@ -250,7 +255,8 @@
                         android:background="@android:drawable/progress_horizontal"
                         android:backgroundTint="?attr/colorControlHighlight"
 
-                        android:text="@string/home_reset_right_full" />
+                        android:text="@string/home_reset_right_full"
+                        android:onClick="resetRight"/>
                 </TableRow>
 
                 <TableRow
@@ -272,7 +278,8 @@
                     android:background="@android:drawable/progress_horizontal"
                     android:backgroundTint="?attr/colorControlHighlight"
 
-                    android:text="@string/home_skip_day" />
+                    android:text="@string/home_skip_day"
+                    android:onClick="skipDay"/>
                 </TableRow>
 
 
