@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="countdown_margin">5dp</dimen>
+    <dimen name="countdown_padding">25dp</dimen>
+    <dimen name="countdown_text_size">25sp</dimen>
+    <dimen name="countdown_title_size">20sp</dimen>
+
+    <dimen name="list_horizontal_margin">10dp</dimen>
 </resources>
