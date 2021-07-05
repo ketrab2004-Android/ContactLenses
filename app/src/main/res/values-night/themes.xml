@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="buttonBarNeutralButtonStyle">@color/purple_200</item> <!--button-->
+        <item name="buttonBarPositiveButtonStyle">@color/black</item> <!-- button left icon color-->
     </style>
 </resources>
