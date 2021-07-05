@@ -14,4 +14,30 @@
     <string name="home_reset_left_full">Reset left</string>
     <string name="home_reset_right_full">Reset right</string>
     <string name="home_skip_day">Skip today</string>
+    <string name="home_skipped_title">Skipped days</string>
+
+    <!-- Settings -->
+    <!--day-->
+    <string name="settings_title_duration_day">Lens max wear time</string>
+    <string name="settings_measurement_duration_day">Hours</string>
+    <string name="settings_autofill_duration_day">8,12,14,16</string>
+
+    <string name="settings_title_notification_day">Early remove lenses notification</string>
+    <string name="settings_measurement_notification_day">Hours early</string>
+    <string name="settings_autofill_notification_day">2,3,4</string>
+
+    <string name="settings_earlyNotification_title_day">Remove lenses early notification</string>
+
+    <!--full-->
+    <string name="settings_title_duration_full">Lens max uses</string>
+    <string name="settings_measurement_duration_full">Days</string>
+    <string name="settings_autofill_duration_full">30,60,90,180</string>
+
+    <string name="settings_title_notificationTime_full">Replace lenses notification time</string>
+
+    <string name="settings_title_notification_full">Early replace lenses notification</string>
+    <string name="settings_measurement_notification_full">Days early</string>
+    <string name="settings_autofill_notification_full">1,2,3,4,7</string>
+
+    <string name="settings_earlyNotification_title_full">Replace lenses early notification</string>
 </resources>
