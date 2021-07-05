@@ -6,18 +6,254 @@
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingsFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Temporary Settings"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+
+                    android:labelFor="@id/lensDurationDay"
+                    android:text="@string/settings_title_duration_day"
+                    android:textSize="@dimen/countdown_title_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/lensDurationDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/list_horizontal_margin"
+                        android:layout_weight=".8"
+
+                        android:autofillHints="@string/settings_autofill_duration_day"
+
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        tools:text="@sample/numbers.json/numbers/numbers_0.30/number"
+                        android:textAlignment="textEnd" />
+
+                    <TextView
+                        android:id="@+id/measurementLensDurationDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                        android:layout_weight="1"
+
+                        android:text="@string/settings_measurement_duration_day"
+                        android:textSize="@dimen/countdown_title_size" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+
+                    android:labelFor="@id/lensNotificationDay"
+                    android:text="@string/settings_title_notification_day"
+                    android:textSize="@dimen/countdown_title_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/lensNotificationDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/list_horizontal_margin"
+                        android:layout_weight=".8"
+
+                        android:autofillHints="@string/settings_autofill_notification_day"
+
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        tools:text="@sample/numbers.json/numbers/numbers_0.30/number"
+                        android:textAlignment="textEnd" />
+
+                    <TextView
+                        android:id="@+id/measurementLensNotificationDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                        android:layout_weight="1"
+
+                        android:text="@string/settings_measurement_notification_day"
+                        android:textSize="@dimen/countdown_title_size" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/lensNotificationDayEnabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                android:text="@string/settings_earlyNotification_title_day"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginVertical="@dimen/divider_hor_margin"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+
+                    android:labelFor="@id/lensDurationFull"
+                    android:text="@string/settings_title_duration_full"
+                    android:textSize="@dimen/countdown_title_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/lensDurationFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/list_horizontal_margin"
+                        android:layout_weight=".8"
+
+                        android:autofillHints="@string/settings_autofill_duration_full"
+
+                        android:ems="10"
+                        android:inputType="number"
+                        tools:text="@sample/numbers.json/numbers/numbers_0.30/number"
+                        android:textAlignment="textEnd" />
+
+                    <TextView
+                        android:id="@+id/measurementLensDurationFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                        android:layout_weight="1"
+
+                        android:text="@string/settings_measurement_duration_full"
+                        android:textSize="@dimen/countdown_title_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+
+                    android:labelFor="@id/lensNotificationTimeFull"
+                    android:text="@string/settings_title_notificationTime_full"
+                    android:textSize="@dimen/countdown_title_size" />
+
+                <Button
+                    android:id="@+id/lensNotificationTimeFull"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/list_horizontal_margin"
+
+                    android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
+
+                    android:onClick="pickTime"
+
+                    tools:text="@tools:sample/date/hhmm"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+
+                    android:labelFor="@id/lensNotificationFull"
+                    android:text="@string/settings_title_notification_full"
+                    android:textSize="@dimen/countdown_title_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/lensNotificationFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/list_horizontal_margin"
+                        android:layout_weight=".8"
+
+                        android:autofillHints="@string/settings_autofill_notification_full"
+
+                        android:ems="10"
+                        android:inputType="number"
+                        tools:text="@sample/numbers.json/numbers/numbers_0.30/number"
+                        android:textAlignment="textEnd" />
+
+                    <TextView
+                        android:id="@+id/measurementLensNotificationFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                        android:layout_weight="1"
+
+                        android:text="@string/settings_measurement_notification_full"
+                        android:textSize="@dimen/countdown_title_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/lensNotificationFullEnabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                android:text="@string/settings_earlyNotification_title_full"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginVertical="@dimen/divider_hor_margin"
+                android:background="?android:attr/listDivider" />
+
+            <!--TODO replace lenses notification time-->
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
