@@ -6,8 +6,8 @@
     <string name="home_countdown_day">Remove lenses countdown</string>
     <string name="home_countdown_full">Replace lenses countdown</string>
 
-    <string name="home_reset_left">Set left</string>
-    <string name="home_reset_right">Set right</string>
+    <string name="home_reset_left">Start left</string>
+    <string name="home_reset_right">Start right</string>
     <string name="home_stop_left">Stop left</string>
     <string name="home_stop_right">Stop right</string>
 
