@@ -1,9 +1,13 @@
 package me.ketrab2004.contactlenses;
 
+import android.app.TimePickerDialog;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -13,6 +17,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,5 +64,28 @@ public class MainActivity extends AppCompatActivity {
     public void skipDay(View button){
         CheckBox checkBox = (CheckBox)button;
         Log.d("Debug", "Skip day " + button.getId() + " " + checkBox.isChecked());
+    }
+
+    int hour, minute;
+    //Timepicker
+    public void pickTime(View view){
+        // time picker dialog
+        TimePickerDialog picker = new TimePickerDialog(MainActivity.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                        hour = sHour;
+                        minute = sMinute;
+
+                        TextView textInput = (TextView) view;
+                        textInput.setText(String.format(Locale.UK, "%02d:%02d", hour, minute ));
+
+                        //TODO save set time
+                    }
+                }, hour, minute, true);
+
+        //picker.setTitle("Choose a time to");
+        //picker.setMessage("display the \"replace contact lenses\" message.");
+        picker.show();
     }
 }
