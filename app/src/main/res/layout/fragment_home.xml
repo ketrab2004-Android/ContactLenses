@@ -90,7 +90,7 @@
 
                         android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:drawableLeft="@drawable/ic_home_stop_24dp"
+                        android:drawableLeft="@drawable/ic_home_play_24dp"
                         android:text="@string/home_reset_left"
                         android:onClick="startLeft"/>
 
@@ -106,7 +106,7 @@
 
                         android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:drawableLeft="@drawable/ic_home_stop_24dp"
+                        android:drawableLeft="@drawable/ic_home_play_24dp"
                         android:text="@string/home_reset_right"
                         android:onClick="startRight"/>
                 </TableRow>
@@ -127,7 +127,7 @@
 
                         android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:drawableLeft="@drawable/ic_home_play_24dp"
+                        android:drawableLeft="@drawable/ic_home_stop_24dp"
                         android:text="@string/home_stop_left"
                         android:onClick="stopLeft"/>
 
@@ -142,7 +142,7 @@
 
                         android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:drawableLeft="@drawable/ic_home_play_24dp"
+                        android:drawableLeft="@drawable/ic_home_stop_24dp"
                         android:text="@string/home_stop_right"
                         android:onClick="stopRight"/>
                 </TableRow>
