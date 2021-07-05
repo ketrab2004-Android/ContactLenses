@@ -1,6 +1,9 @@
 package me.ketrab2004.contactlenses;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,4 +31,32 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    //Start lens counter (day)
+    public void startLeft(View button){
+        Log.d("Debug", "Start left " + button.getId());
+    }
+    public void startRight(View button){
+        Log.d("Debug", "Start right " + button.getId());
+    }
+    //Stop lens counter (day)
+    public void stopLeft(View button){
+        Log.d("Debug", "Stop left " + button.getId());
+    }
+    public void stopRight(View button){
+        Log.d("Debug", "Stop right " + button.getId());
+    }
+
+    //Reset lens counter (full)
+    public void resetLeft(View button){
+        Log.d("Debug", "Reset left " + button.getId());
+    }
+    public void resetRight(View button){
+        Log.d("Debug", "Reset right " + button.getId());
+    }
+
+    //Skip today switch
+    public void skipDay(View button){
+        CheckBox checkBox = (CheckBox)button;
+        Log.d("Debug", "Skip day " + button.getId() + " " + checkBox.isChecked());
+    }
 }
