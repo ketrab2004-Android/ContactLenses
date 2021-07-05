@@ -86,15 +86,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/countdown_margin"
                         android:layout_marginVertical="0dp"
+                        android:padding="@dimen/button_padding"
                         android:layout_weight="1"
 
-                        android:paddingVertical="0dp"
+                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:background="@android:drawable/progress_horizontal"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
+                        android:drawableLeft="@drawable/ic_home_stop_24dp"
                         android:text="@string/home_reset_left"
-                        android:onClick="setLeft"/>
+                        android:onClick="startLeft"/>
 
 
                     <Button
@@ -103,22 +102,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/countdown_margin"
                         android:layout_marginVertical="0dp"
+                        android:padding="@dimen/button_padding"
                         android:layout_weight="1"
 
-                        android:paddingVertical="0dp"
+                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:background="@android:drawable/progress_horizontal"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
+                        android:drawableLeft="@drawable/ic_home_stop_24dp"
                         android:text="@string/home_reset_right"
-                        android:onClick="setRight"/>
+                        android:onClick="startRight"/>
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/TableDayButtonsStop"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/countdown_margin">
+                    android:layout_height="match_parent">
 
                     <Button
                         android:id="@+id/buttonDayLeftStop"
@@ -126,13 +123,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/countdown_margin"
                         android:layout_marginVertical="0dp"
+                        android:padding="@dimen/button_padding"
                         android:layout_weight="1"
 
-                        android:paddingVertical="0dp"
+                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:background="@android:drawable/progress_horizontal"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
+                        android:drawableLeft="@drawable/ic_home_play_24dp"
                         android:text="@string/home_stop_left"
                         android:onClick="stopLeft"/>
 
@@ -142,13 +138,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/countdown_margin"
                         android:layout_marginVertical="0dp"
+                        android:padding="@dimen/button_padding"
                         android:layout_weight="1"
 
-                        android:paddingVertical="0dp"
+                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:background="@android:drawable/progress_horizontal"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
+                        android:drawableLeft="@drawable/ic_home_play_24dp"
                         android:text="@string/home_stop_right"
                         android:onClick="stopRight"/>
                 </TableRow>
@@ -231,13 +226,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/countdown_margin"
                         android:layout_marginVertical="0dp"
+                        android:padding="@dimen/button_padding"
                         android:layout_weight="1"
 
-                        android:paddingVertical="0dp"
+                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:background="@android:drawable/progress_horizontal"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
+                        android:drawableLeft="@drawable/ic_home_reset_24dp"
                         android:text="@string/home_reset_left_full"
                         android:onClick="resetLeft"/>
 
@@ -248,13 +242,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/countdown_margin"
                         android:layout_marginVertical="0dp"
+                        android:padding="@dimen/button_padding"
                         android:layout_weight="1"
 
-                        android:paddingVertical="0dp"
+                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
 
-                        android:background="@android:drawable/progress_horizontal"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
+                        android:drawableLeft="@drawable/ic_home_reset_24dp"
                         android:text="@string/home_reset_right_full"
                         android:onClick="resetRight"/>
                 </TableRow>
