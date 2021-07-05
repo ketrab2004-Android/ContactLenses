@@ -6,4 +6,8 @@
   <path
       android:fillColor="?attr/buttonBarPositiveButtonStyle"
       android:pathData="M16,6H8C6.9,6 6,6.9 6,8v8c0,1.1 0.9,2 2,2h8c1.1,0 2,-0.9 2,-2V8C18,6.9 17.1,6 16,6z"/>
+  <!--
+  Icon made by https://www.flaticon.com/authors/pixel-perfect Pixel perfect
+  from https://www.flaticon.com/
+  -->
 </vector>
