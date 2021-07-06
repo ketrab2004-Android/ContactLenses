@@ -10,5 +10,6 @@
     <color name="white_200">#FFd9d9d9</color>
     <color name="white_500">#FF808080</color>
     <color name="white_700">#FF3d3d3d</color>
+    <color name="white_900">#FF212121</color>
     <color name="black">#FF000000</color>
 </resources>
