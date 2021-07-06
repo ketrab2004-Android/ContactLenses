@@ -8,6 +8,9 @@
     <string name="home_countdown_full">Replace lenses countdown</string> <!-- text above 2 counter that show when to replace lenses with new ones -->
     <string name="home_countdown_full_end">Last day:</string> <!-- after this it shows the date when this lens needs to be replaced -->
 
+    <string name="home_countdown_day_empty">--:--:--</string> <!-- text that shows in time counter when nothing loaded -->
+    <string name="home_countdown_full_empty">--</string> <!-- text that shows in day counter when nothing loaded -->
+
     <string name="home_reset_left">Start left</string> <!-- start left lens counter (for day) -->
     <string name="home_reset_right">Start right</string> <!-- start right lens counter (for day) -->
     <string name="home_stop_left">Stop left</string> <!-- stop left lens counter (for day) -->
