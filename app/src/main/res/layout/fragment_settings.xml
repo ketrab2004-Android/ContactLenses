@@ -42,6 +42,7 @@
                         android:layout_weight=".8"
 
                         android:autofillHints="@string/settings_autofill_duration_day"
+                        android:imeOptions="actionDone"
 
                         android:ems="10"
                         android:inputType="numberDecimal"
@@ -88,6 +89,7 @@
                         android:layout_weight=".8"
 
                         android:autofillHints="@string/settings_autofill_notification_day"
+                        android:imeOptions="actionDone"
 
                         android:ems="10"
                         android:inputType="numberDecimal"
@@ -147,6 +149,7 @@
                         android:layout_weight=".8"
 
                         android:autofillHints="@string/settings_autofill_duration_full"
+                        android:imeOptions="actionDone"
 
                         android:ems="10"
                         android:inputType="number"
@@ -220,6 +223,7 @@
                         android:layout_weight=".8"
 
                         android:autofillHints="@string/settings_autofill_notification_full"
+                        android:imeOptions="actionDone"
 
                         android:ems="10"
                         android:inputType="number"
