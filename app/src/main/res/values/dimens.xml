@@ -4,12 +4,18 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="countdown_margin">5dp</dimen>
-    <dimen name="countdown_padding">25dp</dimen>
+    <dimen name="countdown_padding">20dp</dimen>
     <dimen name="countdown_text_size">25sp</dimen>
     <dimen name="countdown_title_size">20sp</dimen>
     <dimen name="countdown_subtext_size">10sp</dimen>
 
+    <dimen name="countdown_radius">10dp</dimen>
+    <dimen name="countdown_elevation">10dp</dimen>
+
     <dimen name="button_padding">12.5dp</dimen>
+    <dimen name="card_margin">15dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="card_radius">10dp</dimen>
 
     <dimen name="divider_hor_margin">15dp</dimen>
     <dimen name="divider_height">2dp</dimen>
