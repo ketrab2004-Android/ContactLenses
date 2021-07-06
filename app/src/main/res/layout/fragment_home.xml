@@ -9,299 +9,455 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarStyle="insideInset">
+        android:scrollbarStyle="insideInset"
+        android:background="?attr/backgroundColor" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/list_horizontal_margin"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
-            <TextView
-                android:id="@+id/countdownTitleDay"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/removeLensesCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/countdown_margin"
                 android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                app:contentPadding="@dimen/list_horizontal_margin"
 
-                android:text="@string/home_countdown_day"
-                android:textSize="@dimen/countdown_title_size" />
+                android:clipChildren="false"
+                android:clipToPadding="false"
 
-            <TableLayout
-                android:id="@+id/TableDayLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                app:cardPreventCornerOverlap="true"
+                app:cardMaxElevation="@dimen/card_elevation"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardBackgroundColor="?attr/backgroundTint"
+                app:cardCornerRadius="@dimen/card_radius">
 
-                <TableRow
-                    android:id="@+id/TableDayCountdown"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/CountdownDayRight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/countdown_margin"
-                        android:layout_weight="1"
-                        android:background="@android:drawable/toast_frame"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
-                        android:gravity="center"
-                        android:padding="@dimen/countdown_padding"
-                        android:textAlignment="center"
-
-                        android:textSize="@dimen/countdown_text_size"
-                        android:textStyle="bold"
-
-                        app:layout_constraintDimensionRatio="1:1"
-                        tools:text="@tools:sample/date/hhmmss" />
-
-                    <TextView
-                        android:id="@+id/CountdownDayLeft"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/countdown_margin"
-                        android:layout_weight="1"
-                        android:background="@android:drawable/toast_frame"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
-                        android:gravity="center"
-                        android:padding="@dimen/countdown_padding"
-                        android:textAlignment="center"
-
-                        android:textSize="@dimen/countdown_text_size"
-                        android:textStyle="bold"
-
-                        app:layout_constraintDimensionRatio="1:1"
-                        tools:text="@tools:sample/date/hhmmss" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/TableDayButtonsReset"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/buttonDayLeftReset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/countdown_margin"
-                        android:layout_marginVertical="0dp"
-                        android:padding="@dimen/button_padding"
-                        android:layout_weight="1"
-
-                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
-
-                        android:drawableLeft="@drawable/ic_home_play_24dp"
-                        android:text="@string/home_reset_left"
-                        android:onClick="startLeft"/>
-
-
-                    <Button
-                        android:id="@+id/buttonDayRightReset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/countdown_margin"
-                        android:layout_marginVertical="0dp"
-                        android:padding="@dimen/button_padding"
-                        android:layout_weight="1"
-
-                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
-
-                        android:drawableLeft="@drawable/ic_home_play_24dp"
-                        android:text="@string/home_reset_right"
-                        android:onClick="startRight"/>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/TableDayButtonsStop"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/buttonDayLeftStop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/countdown_margin"
-                        android:layout_marginVertical="0dp"
-                        android:padding="@dimen/button_padding"
-                        android:layout_weight="1"
-
-                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
-
-                        android:drawableLeft="@drawable/ic_home_stop_24dp"
-                        android:text="@string/home_stop_left"
-                        android:onClick="stopLeft"/>
-
-                    <Button
-                        android:id="@+id/buttonDayRightStop"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/countdown_margin"
-                        android:layout_marginVertical="0dp"
-                        android:padding="@dimen/button_padding"
-                        android:layout_weight="1"
-
-                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
-
-                        android:drawableLeft="@drawable/ic_home_stop_24dp"
-                        android:text="@string/home_stop_right"
-                        android:onClick="stopRight"/>
-                </TableRow>
-
-            </TableLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_height"
-                android:layout_marginVertical="@dimen/divider_hor_margin"
-                android:background="?android:attr/listDivider" />
-
-            <TextView
-                android:id="@+id/CountdownTitleFull"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/list_horizontal_margin"
-
-                android:textSize="@dimen/countdown_title_size"
-                android:text="@string/home_countdown_full" />
-
-            <TableLayout
-                android:id="@+id/TableFullLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow
-                    android:id="@+id/TableFullCountdown"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:id="@+id/CountdownFullLeft"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/countdown_margin"
-                        android:layout_weight="1"
-                        android:background="@android:drawable/toast_frame"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
-                        android:gravity="center"
-                        android:padding="@dimen/countdown_padding"
-                        android:textAlignment="center"
-
-                        android:textSize="@dimen/countdown_text_size"
-                        android:textStyle="bold"
-
-                        app:layout_constraintDimensionRatio="1:1"
-                        tools:text="@sample/numbers.json/numbers/numbers_0.30/number" />
-
-                    <TextView
-                        android:id="@+id/CountdownFullRight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/countdown_margin"
-                        android:layout_weight="1"
-                        android:background="@android:drawable/toast_frame"
-                        android:backgroundTint="?attr/colorControlHighlight"
-
-                        android:gravity="center"
-                        android:padding="@dimen/countdown_padding"
-                        android:textAlignment="center"
-
-                        android:textSize="@dimen/countdown_text_size"
-                        android:textStyle="bold"
-
-                        app:layout_constraintDimensionRatio="1:1"
-                        tools:text="@sample/numbers.json/numbers/numbers_0.30/number" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/TableFullButtonsReset"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/buttonFullLeftReset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/countdown_margin"
-                        android:layout_marginVertical="0dp"
-                        android:padding="@dimen/button_padding"
-                        android:layout_weight="1"
-
-                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
-
-                        android:drawableLeft="@drawable/ic_home_reset_24dp"
-                        android:text="@string/home_reset_left_full"
-                        android:onClick="resetLeft"/>
-
-
-                    <Button
-                        android:id="@+id/buttonFullRightReset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/countdown_margin"
-                        android:layout_marginVertical="0dp"
-                        android:padding="@dimen/button_padding"
-                        android:layout_weight="1"
-
-                        android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
-
-                        android:drawableLeft="@drawable/ic_home_reset_24dp"
-                        android:text="@string/home_reset_right_full"
-                        android:onClick="resetRight"/>
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/TableFullButtonSkip"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/countdown_margin">
-
-                <CheckBox
-                    android:id="@+id/buttonFullSkip"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/countdown_margin"
-                    android:layout_marginVertical="0dp"
-                    android:layout_weight="1"
+                    android:orientation="vertical"
 
-                    android:paddingVertical="0dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
 
-                    android:background="@android:drawable/progress_horizontal"
-                    android:backgroundTint="?attr/colorControlHighlight"
-
-                    android:text="@string/home_skip_day"
-                    android:onClick="skipDay"/>
+                    android:elevation="@dimen/card_elevation">
 
                     <TextView
-                        android:id="@+id/skippedDaysCounter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="10"
-                        android:textAlignment="textEnd"
-                        tools:text="@sample/numbers.json/numbers/numbers_0.30/number" />
-                    <TextView
+                        android:id="@+id/countdownTitleDay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:text="@string/home_skipped_title" />
+                        android:layout_marginHorizontal="@dimen/list_horizontal_margin"
 
-                </TableRow>
+                        android:text="@string/home_countdown_day"
+                        android:textSize="@dimen/countdown_title_size" />
+
+                    <TableLayout
+                        android:id="@+id/TableDayLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <TableRow
+                            android:id="@+id/TableDayCountdown"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/countdown_margin"
+                                android:layout_weight="1"
+                                app:contentPaddingBottom="@dimen/countdown_padding"
+                                app:contentPaddingTop="@dimen/countdown_padding"
+
+                                app:cardPreventCornerOverlap="true"
+                                app:cardMaxElevation="@dimen/countdown_elevation"
+                                app:cardElevation="@dimen/countdown_elevation"
+                                app:cardBackgroundColor="?attr/backgroundInsetStart"
+                                app:cardCornerRadius="@dimen/countdown_radius">
+
+                                <TextView
+                                    android:id="@+id/CountdownDayLeft"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+
+                                    android:gravity="center"
+                                    android:textAlignment="center"
+
+                                    android:textSize="@dimen/countdown_text_size"
+                                    android:textStyle="bold"
+
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    tools:text="@tools:sample/date/hhmmss" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/countdown_margin"
+                                android:layout_weight="1"
+                                app:contentPaddingBottom="@dimen/countdown_padding"
+                                app:contentPaddingTop="@dimen/countdown_padding"
+
+                                app:cardPreventCornerOverlap="true"
+                                app:cardMaxElevation="@dimen/countdown_elevation"
+                                app:cardElevation="@dimen/countdown_elevation"
+                                app:cardBackgroundColor="?attr/backgroundInsetStart"
+                                app:cardCornerRadius="@dimen/countdown_radius">
+
+                                <TextView
+                                    android:id="@+id/CountdownDayRight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+
+                                    android:gravity="center"
+                                    android:textAlignment="center"
+
+                                    android:textSize="@dimen/countdown_text_size"
+                                    android:textStyle="bold"
+
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    tools:text="@tools:sample/date/hhmmss" />
+                            </androidx.cardview.widget.CardView>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/TableDayButtonsReset"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/buttonDayLeftReset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/countdown_margin"
+                                android:layout_marginVertical="0dp"
+                                android:padding="@dimen/button_padding"
+                                android:layout_weight="1"
+
+                                android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
+
+                                android:drawableLeft="@drawable/ic_home_play_24dp"
+                                android:text="@string/home_reset_left"
+                                android:onClick="startLeft"/>
 
 
-            </TableLayout>
+                            <Button
+                                android:id="@+id/buttonDayRightReset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/countdown_margin"
+                                android:layout_marginVertical="0dp"
+                                android:padding="@dimen/button_padding"
+                                android:layout_weight="1"
 
-            <View
+                                android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
+
+                                android:drawableLeft="@drawable/ic_home_play_24dp"
+                                android:text="@string/home_reset_right"
+                                android:onClick="startRight"/>
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/TableDayButtonsStop"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <Button
+                                android:id="@+id/buttonDayLeftStop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/countdown_margin"
+                                android:layout_marginVertical="0dp"
+                                android:padding="@dimen/button_padding"
+                                android:layout_weight="1"
+
+                                android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
+
+                                android:drawableLeft="@drawable/ic_home_stop_24dp"
+                                android:text="@string/home_stop_left"
+                                android:onClick="stopLeft"/>
+
+                            <Button
+                                android:id="@+id/buttonDayRightStop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/countdown_margin"
+                                android:layout_marginVertical="0dp"
+                                android:padding="@dimen/button_padding"
+                                android:layout_weight="1"
+
+                                android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
+
+                                android:drawableLeft="@drawable/ic_home_stop_24dp"
+                                android:text="@string/home_stop_right"
+                                android:onClick="stopRight"/>
+                        </TableRow>
+
+                    </TableLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/replaceLensesCard"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_height"
-                android:layout_marginVertical="@dimen/divider_hor_margin"
-                android:background="?android:attr/listDivider" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/countdown_margin"
                 android:layout_marginHorizontal="@dimen/list_horizontal_margin"
-                android:text="Woop" />
+                app:contentPadding="@dimen/list_horizontal_margin"
+
+                android:clipChildren="false"
+                android:clipToPadding="false"
+
+                app:cardPreventCornerOverlap="true"
+                app:cardMaxElevation="@dimen/card_elevation"
+                app:cardElevation="@dimen/card_elevation"
+                app:cardBackgroundColor="?attr/backgroundTint"
+                app:cardCornerRadius="@dimen/card_radius">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+
+                    android:elevation="@dimen/card_elevation">
+
+                    <TextView
+                        android:id="@+id/CountdownTitleFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+
+                        android:textSize="@dimen/countdown_title_size"
+                        android:text="@string/home_countdown_full" />
+
+                    <TableLayout
+                        android:id="@+id/TableFullLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false">
+
+                        <TableRow
+                            android:id="@+id/TableFullCountdown"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/countdown_margin"
+                                android:layout_weight="1"
+                                app:contentPaddingBottom="@dimen/countdown_padding"
+                                app:contentPaddingTop="@dimen/countdown_padding"
+
+                                app:cardPreventCornerOverlap="true"
+                                app:cardMaxElevation="@dimen/countdown_elevation"
+                                app:cardElevation="@dimen/countdown_elevation"
+                                app:cardBackgroundColor="?attr/backgroundInsetStart"
+                                app:cardCornerRadius="@dimen/countdown_radius">
+
+                                <TextView
+                                    android:id="@+id/CountdownFullLeft"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+
+                                    android:gravity="center"
+                                    android:textAlignment="center"
+
+                                    android:textSize="@dimen/countdown_text_size"
+                                    android:textStyle="bold"
+
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    tools:text="@sample/numbers.json/numbers/numbers_0.30/number" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/countdown_margin"
+                                android:layout_weight="1"
+                                app:contentPaddingBottom="@dimen/countdown_padding"
+                                app:contentPaddingTop="@dimen/countdown_padding"
+
+                                app:cardPreventCornerOverlap="true"
+                                app:cardMaxElevation="@dimen/countdown_elevation"
+                                app:cardElevation="@dimen/countdown_elevation"
+                                app:cardBackgroundColor="?attr/backgroundInsetStart"
+                                app:cardCornerRadius="@dimen/countdown_radius">
+
+                                <TextView
+                                    android:id="@+id/CountdownFullRight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+
+                                    android:gravity="center"
+                                    android:textAlignment="center"
+
+                                    android:textSize="@dimen/countdown_text_size"
+                                    android:textStyle="bold"
+
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    tools:text="@sample/numbers.json/numbers/numbers_0.30/number" />
+                            </androidx.cardview.widget.CardView>
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                                android:orientation="horizontal"
+                                android:layout_weight="1" >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+
+                                    android:text="@string/home_countdown_full_end"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="@dimen/countdown_subtext_size" />
+
+                                <TextView
+                                    android:id="@+id/lastDayLeft"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+
+                                    tools:text="@tools:sample/date/ddmmyy"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/countdown_subtext_size" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginHorizontal="@dimen/list_horizontal_margin"
+                                android:orientation="horizontal"
+                                android:layout_weight="1" >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+
+                                    android:text="@string/home_countdown_full_end"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="@dimen/countdown_subtext_size" />
+
+                                <TextView
+                                    android:id="@+id/lastDayRight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+
+                                    tools:text="@tools:sample/date/ddmmyy"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/countdown_subtext_size" />
+
+                            </LinearLayout>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/TableFullButtonsReset"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <Button
+                                android:id="@+id/buttonFullLeftReset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/countdown_margin"
+                                android:layout_marginVertical="0dp"
+                                android:padding="@dimen/button_padding"
+                                android:layout_weight="1"
+
+                                android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
+
+                                android:drawableLeft="@drawable/ic_home_reset_24dp"
+                                android:text="@string/home_reset_left_full"
+                                android:onClick="resetLeft"/>
+
+
+                            <Button
+                                android:id="@+id/buttonFullRightReset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/countdown_margin"
+                                android:layout_marginVertical="0dp"
+                                android:padding="@dimen/button_padding"
+                                android:layout_weight="1"
+
+                                android:backgroundTint="?attr/buttonBarNeutralButtonStyle"
+
+                                android:drawableLeft="@drawable/ic_home_reset_24dp"
+                                android:text="@string/home_reset_right_full"
+                                android:onClick="resetRight"/>
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/TableFullButtonSkip"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/countdown_margin">
+
+                        <CheckBox
+                            android:id="@+id/buttonFullSkip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/countdown_margin"
+                            android:layout_marginVertical="0dp"
+                            android:layout_weight="1"
+
+                            android:paddingVertical="0dp"
+
+                            android:background="@android:drawable/progress_horizontal"
+                            android:backgroundTint="?attr/colorControlHighlight"
+
+                            android:text="@string/home_skip_day"
+                            android:onClick="skipDay"/>
+
+                            <TextView
+                                android:id="@+id/skippedDaysCounter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="10"
+                                android:textAlignment="textEnd"
+                                tools:text="@sample/numbers.json/numbers/numbers_0.30/number" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:text="@string/home_skipped_title" />
+
+                        </TableRow>
+
+
+                    </TableLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
     </ScrollView>
