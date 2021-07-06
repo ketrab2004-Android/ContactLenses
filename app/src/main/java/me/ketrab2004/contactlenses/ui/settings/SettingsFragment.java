@@ -22,8 +22,7 @@ public class SettingsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         settingsViewModel =
                 new ViewModelProvider(this).get(SettingsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        return root;
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 }
