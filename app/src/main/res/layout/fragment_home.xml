@@ -44,9 +44,7 @@
                     android:orientation="vertical"
 
                     android:clipChildren="false"
-                    android:clipToPadding="false"
-
-                    android:elevation="@dimen/card_elevation">
+                    android:clipToPadding="false">
 
                     <TextView
                         android:id="@+id/countdownTitleDay"
@@ -232,9 +230,7 @@
                     android:orientation="vertical"
 
                     android:clipChildren="false"
-                    android:clipToPadding="false"
-
-                    android:elevation="@dimen/card_elevation">
+                    android:clipToPadding="false">
 
                     <TextView
                         android:id="@+id/CountdownTitleFull"
