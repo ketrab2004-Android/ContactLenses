@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="navbar_height">56dp</dimen>
+
     <dimen name="countdown_margin">5dp</dimen>
     <dimen name="countdown_padding">20dp</dimen>
     <dimen name="countdown_text_size">25sp</dimen>
