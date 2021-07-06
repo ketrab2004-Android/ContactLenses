@@ -19,5 +19,10 @@
         <item name="backgroundColor">@color/white_200</item> <!-- background colour -->
         <item name="backgroundTint">@color/white</item> <!-- card background colour -->
         <item name="backgroundInsetStart">@color/white</item> <!-- countdown background colour -->
+
+        <item name="editTextColor">@color/white_500</item> <!-- editText line colour -->
+
+        <item name="counterTextColor">@color/white_500</item> <!-- text colour for changing text -->
+        <item name="counterOverflowTextColor">@color/red</item> <!-- text colour for changing text that is negative -->
     </style>
 </resources>
