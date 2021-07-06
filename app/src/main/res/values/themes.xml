@@ -15,5 +15,9 @@
 
         <item name="buttonBarNeutralButtonStyle">@color/purple_500</item> <!--button-->
         <item name="buttonBarPositiveButtonStyle">@color/white_200</item> <!-- button left icon color-->
+
+        <item name="backgroundColor">@color/white_200</item> <!-- background colour -->
+        <item name="backgroundTint">@color/white</item> <!-- card background colour -->
+        <item name="backgroundInsetStart">@color/white</item> <!-- countdown background colour -->
     </style>
 </resources>
