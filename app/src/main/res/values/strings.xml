@@ -1,44 +1,45 @@
 <resources>
-    <string name="app_name">Contact Lenses</string>
-    <string name="app_description">App for keeping track of your contact lenses.</string>
-    <string name="title_home">Home</string>
-    <string name="title_settings">Settings</string>
+    <string name="app_name">Contact Lenses</string> <!-- title of app -->
+    <string name="app_description">App for keeping track of your contact lenses.</string> <!-- description (only outside of the app) -->
+    <string name="title_home">Home</string> <!-- title of home tab -->
+    <string name="title_settings">Settings</string> <!-- title of settings tab -->
 
-    <string name="home_countdown_day">Remove lenses countdown</string>
-    <string name="home_countdown_full">Replace lenses countdown</string>
+    <string name="home_countdown_day">Remove lenses countdown</string> <!-- text above 2 counters that show when to remove lenses -->
+    <string name="home_countdown_full">Replace lenses countdown</string> <!-- text above 2 counter that show when to replace lenses with new ones -->
+    <string name="home_countdown_full_end">Last day:</string> <!-- after this it shows the date when this lens needs to be replaced -->
 
-    <string name="home_reset_left">Start left</string>
-    <string name="home_reset_right">Start right</string>
-    <string name="home_stop_left">Stop left</string>
-    <string name="home_stop_right">Stop right</string>
+    <string name="home_reset_left">Start left</string> <!-- start left lens counter (for day) -->
+    <string name="home_reset_right">Start right</string> <!-- start right lens counter (for day) -->
+    <string name="home_stop_left">Stop left</string> <!-- stop left lens counter (for day) -->
+    <string name="home_stop_right">Stop right</string> <!-- stop right lens counter (for day) -->
 
-    <string name="home_reset_left_full">Reset left</string>
-    <string name="home_reset_right_full">Reset right</string>
-    <string name="home_skip_day">Skip today</string>
-    <string name="home_skipped_title">Skipped days</string>
+    <string name="home_reset_left_full">Reset left</string> <!-- reset replace lens counter left -->
+    <string name="home_reset_right_full">Reset right</string> <!-- reset replace lens counter right -->
+    <string name="home_skip_day">Skip today</string> <!-- text after checkbox for skipping today -->
+    <string name="home_skipped_title">Skipped days</string> <!-- text after amount of skipped days -->
 
     <!-- Settings -->
     <!--day-->
-    <string name="settings_title_duration_day">Lens max wear time</string>
-    <string name="settings_measurement_duration_day">Hours</string>
-    <string name="settings_autofill_duration_day">8,12,14,16</string>
+    <string name="settings_title_duration_day">Lens max wear time</string> <!-- choose how long you can wear these lenses -->
+    <string name="settings_measurement_duration_day">Hours</string> <!-- measurement of setting -->
+    <string name="settings_autofill_duration_day">8,12,14,16</string> <!-- not visible to user, do not change -->
 
-    <string name="settings_title_notification_day">Early remove lenses notification</string>
-    <string name="settings_measurement_notification_day">Hours early</string>
-    <string name="settings_autofill_notification_day">2,3,4</string>
+    <string name="settings_title_notification_day">Early remove lenses notification</string> <!-- notification for removing lenses, earlier than max wear time -->
+    <string name="settings_measurement_notification_day">Hours early</string> <!-- measurement of setting + early -->
+    <string name="settings_autofill_notification_day">2,3,4</string> <!-- not visible to user, do not change -->
 
-    <string name="settings_earlyNotification_title_day">Remove lenses early notification</string>
+    <string name="settings_earlyNotification_title_day">Remove lenses early notification</string> <!-- after checkbox for switching remove lenses early notification -->
 
     <!--full-->
-    <string name="settings_title_duration_full">Lens max uses</string>
-    <string name="settings_measurement_duration_full">Days</string>
-    <string name="settings_autofill_duration_full">30,60,90,180</string>
+    <string name="settings_title_duration_full">Lens max uses</string> <!-- title for setting how many days a lens can be used before needing replacement -->
+    <string name="settings_measurement_duration_full">Days</string> <!-- measurement of setting -->
+    <string name="settings_autofill_duration_full">30,60,90,180</string> <!-- not visible to user, do not change -->
 
-    <string name="settings_title_notificationTime_full">Replace lenses notification time</string>
+    <string name="settings_title_notificationTime_full">Replace lenses notification time</string> <!-- time at which to send replace lenses notification -->
 
-    <string name="settings_title_notification_full">Early replace lenses notification</string>
-    <string name="settings_measurement_notification_full">Days early</string>
-    <string name="settings_autofill_notification_full">1,2,3,4,7</string>
+    <string name="settings_title_notification_full">Early replace lenses notification</string> <!-- notification for replacing lenses, earlier than max uses -->
+    <string name="settings_measurement_notification_full">Days early</string> <!-- measurement of setting + early -->
+    <string name="settings_autofill_notification_full">1,2,3,4,7</string> <!-- not visible to user, do not change -->
 
-    <string name="settings_earlyNotification_title_full">Replace lenses early notification</string>
+    <string name="settings_earlyNotification_title_full">Replace lenses early notification</string> <!-- after checkbox for switching replace lenses early notification -->
 </resources>
