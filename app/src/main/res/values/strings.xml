@@ -4,8 +4,8 @@
     <string name="title_home">Home</string> <!-- title of home tab -->
     <string name="title_settings">Settings</string> <!-- title of settings tab -->
 
-    <string name="home_countdown_day">Remove lenses countdown</string> <!-- text above 2 counters that show when to remove lenses -->
-    <string name="home_countdown_full">Replace lenses countdown</string> <!-- text above 2 counter that show when to replace lenses with new ones -->
+    <string name="home_countdown_day">Time until lens removal</string> <!-- text above 2 counters that show when to remove lenses -->
+    <string name="home_countdown_full">Days until lens replacement</string> <!-- text above 2 counter that show when to replace lenses with new ones -->
 
     <string name="home_countdown_day_empty">--:--:--</string> <!-- text that shows in time counter when nothing loaded -->
     <string name="home_countdown_full_empty">--</string> <!-- text that shows in day counter when nothing loaded -->
