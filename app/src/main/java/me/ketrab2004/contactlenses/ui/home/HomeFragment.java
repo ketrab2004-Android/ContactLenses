@@ -37,6 +37,9 @@ public class HomeFragment extends Fragment {
     TextView leftDayLast;
     TextView rightDayLast;
 
+    TextView leftFullCountdown;
+    TextView rightFullCountdown;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -50,8 +53,7 @@ public class HomeFragment extends Fragment {
     }
 
     private LensesSettings updateSets(){
-        sets = ((MainActivity)getActivity()).sets;
-        return sets;
+        return sets = ((MainActivity)getActivity()).sets;
     }
 
     @Override
@@ -63,8 +65,10 @@ public class HomeFragment extends Fragment {
         leftDayLast = (TextView) viewGroup.findViewById(R.id.stopTimeLeft);
         rightDayLast = (TextView) viewGroup.findViewById(R.id.stopTimeRight);
 
-        leftDayLast.setText( sets.lastDayLeft() );
-        rightDayLast.setText( sets.lastDayRight() );
+        leftFullCountdown = (TextView) viewGroup.findViewById(R.id.CountdownFullLeft);
+        rightFullCountdown = (TextView) viewGroup.findViewById(R.id.CountdownFullRight);
+
+        updateCountdownDayEnd();
 
         if (updateClockThread.getState() == Thread.State.NEW)
         {
@@ -112,6 +116,38 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private void updateCountdownDayEnd(){
+        leftDayLast.setText( sets.lastDayLeft() );
+        rightDayLast.setText( sets.lastDayRight() );
+    }
+
+    private void updateCountdownFull(){
+        Pair<String, Boolean> left = sets.timerFullLeft();
+        leftFullCountdown.setText(left.first);
+
+        Pair<String, Boolean> right = sets.timerFullRight();
+        rightFullCountdown.setText(right.first);
+
+        if (getContext() != null) {
+            Resources.Theme theme = getContext().getTheme();
+            TypedValue typedValue = new TypedValue();
+            if (left.second) {
+                theme.resolveAttribute(R.attr.counterOverflowTextColor, typedValue, true);
+            } else {
+                theme.resolveAttribute(R.attr.counterTextColor, typedValue, true);
+            }
+            leftFullCountdown.setTextColor(typedValue.data);
+
+            typedValue = new TypedValue();
+            if (right.second) {
+                theme.resolveAttribute(R.attr.counterOverflowTextColor, typedValue, true);
+            } else {
+                theme.resolveAttribute(R.attr.counterTextColor, typedValue, true);
+            }
+            rightFullCountdown.setTextColor(typedValue.data);
+        }
+    }
+
     Boolean updateClockLoop = true;
     private Thread updateClockThread = new Thread() {
         @Override
@@ -119,6 +155,10 @@ public class HomeFragment extends Fragment {
             try {
                 while(updateClockLoop) {
                     updateCountdownDay();
+                    //updateCountdownDayEnd(); //only necessary when reload Home
+
+                    updateCountdownFull();
+                    //TODO updateCountdownFullEnd (under text)
 
                     sleep(999);
                 }
