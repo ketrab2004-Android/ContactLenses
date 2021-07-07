@@ -1,18 +1,22 @@
 package me.ketrab2004.contactlenses;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.util.Pair;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class LensesSettings {
-    protected int milliInSecond =    1_000;
-    protected int milliInMinute =   60_000;
-    protected int milliInHour =  3_600_000;
-    protected int milliInDay =  86_400_000;
+    public static final int milliInSecond =    1_000;
+    public static final int milliInMinute =   60_000;
+    public static final int milliInHour =  3_600_000;
+    public static final int milliInDay =  86_400_000;
 
     /** How long you can wear your lenses */
     public float lensMaxWearTime = 12f;
@@ -22,9 +26,9 @@ public class LensesSettings {
     public boolean earlyRemoveLensesNotification = true;
 
     /** Time when user started wearing their left lens */
-    public Time startLensLeft = new Time(0);
+    public Date startLensLeft = new Date(0);
     /** Time when user started wearing their right lens */
-    public Time startLensRight = new Time(0);
+    public Date startLensRight = new Date(0);
 
     /** Amount of days you can wear these lenses before replacing them */
     public int lensMaxUses = 30;
@@ -48,6 +52,8 @@ public class LensesSettings {
     /** Day on which to skip */
     public Date skipDay = new Date(0);
 
+    public long roundToDay(long in){    return (long) (Math.floor( (double)in / (double)milliInDay ) * milliInDay);  }
+
     /** Checks if skipDay should be reset */
     public void resetSkipDay(){
         if (skipToday){
@@ -68,8 +74,8 @@ public class LensesSettings {
 
         if ( !startLensLeft.equals(new Time(0)) ){ //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US);
-            Time now = new Time(System.currentTimeMillis());
-            Time end = new Time( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
+            Date now = new Date(System.currentTimeMillis());
+            Date end = new Date( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
             if ( now.getTime() - end.getTime() > 0 ){ //if now is after end
                 isNegative = true;
@@ -90,8 +96,8 @@ public class LensesSettings {
 
         if ( !startLensRight.equals(new Time(0)) ){ //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US);
-            Time now = new Time(System.currentTimeMillis());
-            Time end = new Time( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
+            Date now = new Date(System.currentTimeMillis());
+            Date end = new Date( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
             if ( now.getTime() - end.getTime() > 0 ){ //if now is after end
                 isNegative = true;
@@ -111,13 +117,12 @@ public class LensesSettings {
         String out = "";
         if ( !startLensLeft.equals(new Time(0)) ) { //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
-            Time end = new Time( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
+            Date end = new Date( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
             out = formatter.format(end);
 
-            Time start = new Time( (long) (Math.floor( startLensLeft.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
-            end = new Time( (long) (Math.floor( end.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
-            if (end.after(start)){ //rounded to day, so if end is on the day after start (or more)
+            end = new Date( roundToDay(end.getTime()) ); //round time to day
+            if (end.getTime() != roundToDay(System.currentTimeMillis()) ){ //rounded to day, so if end is another day
                 formatter = new SimpleDateFormat("  dd/MM/yy", Locale.CANADA);
 
                 out += formatter.format(end);
@@ -134,13 +139,12 @@ public class LensesSettings {
         String out = "";
         if ( !startLensRight.equals(new Time(0)) ) { //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
-            Time end = new Time( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
+            Date end = new Date( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
             out = formatter.format(end);
 
-            Time start = new Time( (long) (Math.floor( startLensRight.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
-            end = new Time( (long) (Math.floor( end.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
-            if (end.after(start)){ //rounded to day, so if end is on the day after start (or more)
+            end = new Date( roundToDay(end.getTime()) ); //round time to day
+            if (end.getTime() != roundToDay(System.currentTimeMillis()) ){ //rounded to day, so if end is another day
                 formatter = new SimpleDateFormat("  dd/MM/yy", Locale.CANADA);
 
                 out += formatter.format(end);
@@ -152,16 +156,19 @@ public class LensesSettings {
     /** Returns int that shows how long until left lens needs to be replaced and whether its negative
      * @return Pair< String, Boolean >
      */
-    public Pair<Integer, Boolean> timerFullLeft(){
-        Integer out = 0;
+    public Pair<String, Boolean> timerFullLeft(){
+        String out = "--";
         Boolean isNegative = false;
 
-        if ( !newLensLeft.equals(new Date(0)) ){ //if you have new lens
-            Date now = new Date(System.currentTimeMillis());
+        if ( !newLensLeft.equals(new Time(0)) ){ //if lens is in
+            Date now = new Date( roundToDay(System.currentTimeMillis()) );
+            Date end = new Date( roundToDay(newLensLeft.getTime() + (long)Math.round((double) lensMaxUses * (double)milliInDay) )); //start time + lensMaxUses* (milli in day)
+            //Have to cast to double and then long otherwise it gives the wrong output
 
-            out = Integer.parseInt( DateFormat.format("dd", now.compareTo(newLensLeft)).toString() );
+            long diff = now.getTime() - end.getTime();
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) +1) ); //-1 so it shows days left (so replace on 0)
 
-            if ( (newLensLeft.getTime() - (long)Math.round(lensMaxUses * 86400000))% 86400000 >= 1){ //if now is more than a day after startLens + lensMaxWearTime
+            if ( diff >= 0 ){ //if now is after end
                 isNegative = true;
             }
         }
@@ -172,16 +179,19 @@ public class LensesSettings {
     /** Returns int that shows how long until right lens needs to be replaced and whether its negative
      * @return Pair< String, Boolean >
      */
-    public Pair<Integer, Boolean> timerFullRight(){
-        Integer out = 0;
+    public Pair<String, Boolean> timerFullRight(){
+        String out = "--";
         Boolean isNegative = false;
 
-        if ( !newLensRight.equals(new Date(0)) ){ //if you have new lens
-            Date now = new Date(System.currentTimeMillis());
+        if ( !newLensRight.equals(new Time(0)) ){ //if lens is in
+            Date now = new Date( roundToDay(System.currentTimeMillis()) );
+            Date end = new Date( roundToDay(newLensRight.getTime() + (long)Math.round((double) lensMaxUses * (double)milliInDay) )); //start time + lensMaxUses* (milli in day)
+            //Have to cast to double and then long otherwise it gives the wrong output
 
-            out = Integer.parseInt( DateFormat.format("dd", now.compareTo(newLensRight)).toString() );
+            long diff = now.getTime() - end.getTime();
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) +1) ); //-1 so it shows days left (so replace on 0)
 
-            if ( (newLensRight.getTime() - (long)Math.round(lensMaxUses * 86400000))% 86400000 >= 1){ //if now is more than a day after startLens + lensMaxWearTime
+            if ( diff >= 0 ){ //if now is after end
                 isNegative = true;
             }
         }
