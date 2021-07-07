@@ -21,6 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -85,8 +86,10 @@ public class MainActivity extends AppCompatActivity {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensLeft = new Time(0);
 
+                        //timer turns off, so button turns to start button
                         ((TextView) button).setText(R.string.home_reset_left);
                         ((TextView) button).setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_play_24dp, 0,0,0);
+                        ((TextView) findViewById(R.id.stopTimeLeft)).setText( sets.lastDayLeft() );
                     }
                 }
             };
@@ -101,8 +104,10 @@ public class MainActivity extends AppCompatActivity {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensLeft = new Time(System.currentTimeMillis());
 
+                        //timer turns on, so button turns to stop button
                         ((TextView) button).setText(R.string.home_stop_left);
                         ((TextView) button).setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_stop_24dp, 0,0,0);
+                        ((TextView) findViewById(R.id.stopTimeLeft)).setText( sets.lastDayLeft() );
                     }
                 }
             };
@@ -120,8 +125,10 @@ public class MainActivity extends AppCompatActivity {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensRight = new Time(0);
 
+                        //timer turns off, so button turns to start button
                         ((TextView) button).setText(R.string.home_reset_right);
                         ((TextView) button).setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_play_24dp, 0,0,0);
+                        ((TextView) findViewById(R.id.stopTimeRight)).setText( sets.lastDayRight() );
                     }
                 }
             };
@@ -136,8 +143,10 @@ public class MainActivity extends AppCompatActivity {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensRight = new Time(System.currentTimeMillis());
 
+                        //timer turns on, so button turns to stop button
                         ((TextView) button).setText(R.string.home_stop_right);
                         ((TextView) button).setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_stop_24dp, 0,0,0);
+                        ((TextView) findViewById(R.id.stopTimeRight)).setText( sets.lastDayRight() );
                     }
                 }
             };
@@ -161,23 +170,27 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Debug", "Skip day " + button.getId() + " " + checkBox.isChecked());
     }
 
-    int hour, minute;
     //Timepicker
     public void pickTime(View view){
         // time picker dialog
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH", Locale.CANADA);
+        SimpleDateFormat minuteFormat = new SimpleDateFormat("mm", Locale.CANADA);
+
         TimePickerDialog picker = new TimePickerDialog(MainActivity.this,
+
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        hour = sHour;
-                        minute = sMinute;
+                        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
+                        Time setTime = new Time( sHour * sets.milliInHour + sMinute * sets.milliInMinute);
 
                         TextView textInput = (TextView) view;
-                        textInput.setText(String.format(Locale.UK, "%02d:%02d", hour, minute ));
+                        textInput.setText( formatter.format(setTime) );
 
-                        //TODO save set time
-                    }
-                }, hour, minute, true);
+                        sets.replaceLensesNotification = setTime;
+                        //TODO save
+                    } // \/ get hour and minute from set time to show as default value in time picker
+                }, Integer.parseInt(hourFormat.format(sets.replaceLensesNotification)), Integer.parseInt(minuteFormat.format(sets.replaceLensesNotification)), true);
 
         //picker.setTitle("Choose a time to");
         //picker.setMessage("display the \"replace contact lenses\" message.");
