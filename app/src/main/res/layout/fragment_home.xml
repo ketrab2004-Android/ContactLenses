@@ -135,6 +135,31 @@
                         </TableRow>
 
                         <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/stopTimeLeft"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                tools:text="@tools:sample/date/hhmmss"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/countdown_subtext_size" />
+                            <TextView
+                                android:id="@+id/stopTimeRight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                tools:text="@tools:sample/date/hhmmss"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/countdown_subtext_size" />
+
+                        </TableRow>
+
+                        <TableRow
                             android:id="@+id/TableDayButtonsReset"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -287,62 +312,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" >
 
-                            <LinearLayout
+                            <TextView
+                                android:id="@+id/lastDayLeft"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginHorizontal="@dimen/list_horizontal_margin"
-                                android:orientation="horizontal"
-                                android:layout_weight="1" >
+                                android:layout_weight="1"
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-
-                                    android:text="@string/home_countdown_full_end"
-                                    android:textAlignment="textEnd"
-                                    android:textSize="@dimen/countdown_subtext_size" />
-
-                                <TextView
-                                    android:id="@+id/lastDayLeft"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-
-                                    tools:text="@tools:sample/date/ddmmyy"
-                                    android:textAlignment="center"
-                                    android:textSize="@dimen/countdown_subtext_size" />
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
+                                tools:text="@tools:sample/date/ddmmyy"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/countdown_subtext_size" />
+                            <TextView
+                                android:id="@+id/lastDayRight"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginHorizontal="@dimen/list_horizontal_margin"
-                                android:orientation="horizontal"
-                                android:layout_weight="1" >
+                                android:layout_weight="1"
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-
-                                    android:text="@string/home_countdown_full_end"
-                                    android:textAlignment="textEnd"
-                                    android:textSize="@dimen/countdown_subtext_size" />
-
-                                <TextView
-                                    android:id="@+id/lastDayRight"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-
-                                    tools:text="@tools:sample/date/ddmmyy"
-                                    android:textAlignment="center"
-                                    android:textSize="@dimen/countdown_subtext_size" />
-
-                            </LinearLayout>
+                                tools:text="@tools:sample/date/ddmmyy"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/countdown_subtext_size" />
 
                         </TableRow>
 
