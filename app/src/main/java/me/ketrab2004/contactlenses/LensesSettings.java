@@ -5,11 +5,15 @@ import android.util.Pair;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class LensesSettings {
+    protected int milliInSecond =    1_000;
+    protected int milliInMinute =   60_000;
+    protected int milliInHour =  3_600_000;
+    protected int milliInDay =  86_400_000;
+
     /** How long you can wear your lenses */
     public float lensMaxWearTime = 12f;
     /** Amount of hours a notification should show earlier*/
@@ -25,7 +29,7 @@ public class LensesSettings {
     /** Amount of days you can wear these lenses before replacing them */
     public int lensMaxUses = 30;
     /** Replace lenses notification time (hours) */
-    public Time replaceLensesNotification = new Time(30600000); //8.5 hours is 30 600 000 milliseconds
+    public Time replaceLensesNotification = new Time((long) (milliInHour * 8.5f)); //8.5 hours is 8:30
 
     /** How many days a notification should show telling you that you need to replace your lenses */
     public int earlyReplaceLenses = 7;
@@ -65,7 +69,7 @@ public class LensesSettings {
         if ( !startLensLeft.equals(new Time(0)) ){ //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US);
             Time now = new Time(System.currentTimeMillis());
-            Time end = new Time( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * 3600000)); //start time + maxWearTime*(millis in hour)
+            Time end = new Time( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
             if ( now.getTime() - end.getTime() > 0 ){ //if now is after end
                 isNegative = true;
@@ -87,7 +91,7 @@ public class LensesSettings {
         if ( !startLensRight.equals(new Time(0)) ){ //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US);
             Time now = new Time(System.currentTimeMillis());
-            Time end = new Time( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * 3600000)); //start time + maxWearTime*(millis in hour)
+            Time end = new Time( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
             if ( now.getTime() - end.getTime() > 0 ){ //if now is after end
                 isNegative = true;
@@ -97,6 +101,52 @@ public class LensesSettings {
         }
 
         return new Pair(out, isNegative);
+    }
+
+    /**
+     * See at what time you need to remove left lens (and date if next day)
+     * @return string that shows at what time you need to remove the left lens
+     */
+    public String lastDayLeft(){
+        String out = "";
+        if ( !startLensLeft.equals(new Time(0)) ) { //if lens is in
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
+            Time end = new Time( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
+
+            out = formatter.format(end);
+
+            Time start = new Time( (long) (Math.floor( startLensLeft.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
+            end = new Time( (long) (Math.floor( end.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
+            if (end.after(start)){ //rounded to day, so if end is on the day after start (or more)
+                formatter = new SimpleDateFormat("  dd/MM/yy", Locale.CANADA);
+
+                out += formatter.format(end);
+            }
+        }
+        return out;
+    }
+
+    /**
+     * See at what time you need to remove right lens (and date if next day)
+     * @return string that shows at what time you need to remove the right lens
+     */
+    public String lastDayRight(){
+        String out = "";
+        if ( !startLensRight.equals(new Time(0)) ) { //if lens is in
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
+            Time end = new Time( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
+
+            out = formatter.format(end);
+
+            Time start = new Time( (long) (Math.floor( startLensRight.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
+            end = new Time( (long) (Math.floor( end.getTime() / (float)milliInDay ) * milliInDay)); //round time to day
+            if (end.after(start)){ //rounded to day, so if end is on the day after start (or more)
+                formatter = new SimpleDateFormat("  dd/MM/yy", Locale.CANADA);
+
+                out += formatter.format(end);
+            }
+        }
+        return out;
     }
 
     /** Returns int that shows how long until left lens needs to be replaced and whether its negative
