@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -77,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Boolean succes = prefs.edit().commit();
+        if (!succes){
+            Toast.makeText(this, "Failed to save your data!", Toast.LENGTH_LONG).show(); //error message if fail
+        }
     }
 
     //Start lens counter (day)
