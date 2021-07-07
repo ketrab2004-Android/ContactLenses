@@ -1,5 +1,6 @@
 package me.ketrab2004.contactlenses;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -22,6 +24,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -158,10 +161,66 @@ public class MainActivity extends AppCompatActivity {
 
     //Reset lens counter (full)
     public void resetLeft(View button){
-        Log.d("Debug", "Reset left " + button.getId());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.CANADA);
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.CANADA);
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.CANADA);
+
+        Date dateToUse = sets.newLensLeft;
+        if (dateToUse.equals(new Date(0))){ //if newLens not yet set default pick is today
+            dateToUse = new Date(System.currentTimeMillis());
+        }
+
+        DatePickerDialog picker = new DatePickerDialog(MainActivity.this, 0,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker dp, int sYear, int sMonth, int sDay) {
+                            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
+                            Calendar cal = Calendar.getInstance();
+                            cal.set(Calendar.YEAR, sYear);
+                            cal.set(Calendar.MONTH, sMonth);
+                            cal.set(Calendar.DAY_OF_MONTH, sDay);
+
+                            sets.newLensLeft = new Date( sets.roundToDay(cal.getTimeInMillis()) ); //round to day to make sure Calendar didn't add hour/minute etc. of today
+
+                            //TODO save
+                        } // \/ get day, month and year from set date to show as default value in time picker
+                    },
+                    Integer.parseInt(yearFormat.format(dateToUse)),
+                    Integer.parseInt(monthFormat.format(dateToUse)) -1, //( needs 0-11 so -1 )
+                    Integer.parseInt(dayFormat.format(dateToUse)));
+        picker.getDatePicker().setMaxDate( System.currentTimeMillis() ); //max date is today, cant pick future
+        picker.show();
     }
     public void resetRight(View button){
-        Log.d("Debug", "Reset right " + button.getId());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.CANADA);
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.CANADA);
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.CANADA);
+
+        Date dateToUse = sets.newLensRight;
+        if (dateToUse.equals(new Date(0))){ //if newLens not yet set default pick is today
+            dateToUse = new Date(System.currentTimeMillis());
+        }
+
+        DatePickerDialog picker = new DatePickerDialog(MainActivity.this, 0,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker dp, int sYear, int sMonth, int sDay) {
+                        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.YEAR, sYear);
+                        cal.set(Calendar.MONTH, sMonth);
+                        cal.set(Calendar.DAY_OF_MONTH, sDay);
+
+                        sets.newLensRight = new Date( sets.roundToDay(cal.getTimeInMillis()) ); //round to day to make sure Calendar didn't add hour/minute etc. of today
+
+                        //TODO save
+                    } // \/ get day, month and year from set date to show as default value in time picker
+                },
+                Integer.parseInt(yearFormat.format(dateToUse)),
+                Integer.parseInt(monthFormat.format(dateToUse)) -1, //( needs 0-11 so -1 )
+                Integer.parseInt(dayFormat.format(dateToUse)));
+        picker.getDatePicker().setMaxDate( System.currentTimeMillis() ); //max date is today, cant pick future
+        picker.show();
     }
 
     //Skip today switch
