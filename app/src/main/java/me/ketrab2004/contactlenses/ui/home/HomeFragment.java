@@ -34,6 +34,8 @@ public class HomeFragment extends Fragment {
 
     TextView leftDayCountdown;
     TextView rightDayCountdown;
+    TextView leftDayLast;
+    TextView rightDayLast;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +60,11 @@ public class HomeFragment extends Fragment {
 
         leftDayCountdown = (TextView) viewGroup.findViewById(R.id.CountdownDayLeft);
         rightDayCountdown = (TextView) viewGroup.findViewById(R.id.CountdownDayRight);
+        leftDayLast = (TextView) viewGroup.findViewById(R.id.stopTimeLeft);
+        rightDayLast = (TextView) viewGroup.findViewById(R.id.stopTimeRight);
+
+        leftDayLast.setText( sets.lastDayLeft() );
+        rightDayLast.setText( sets.lastDayRight() );
 
         if (updateClockThread.getState() == Thread.State.NEW)
         {
