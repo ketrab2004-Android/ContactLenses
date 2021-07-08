@@ -54,15 +54,20 @@ public class LensesSettings {
 
     public long roundToDay(long in){    return (long) (Math.floor( (double)in / (double)milliInDay ) * milliInDay);  }
 
-    /** Checks if skipDay should be reset */
-    public void resetSkipDay(){
+    /** Checks if skipDay should be reset
+     * @return whether or not skipDay was changed
+     */
+    public Boolean resetSkipDay(){
         if (skipToday){
-            Date now = new Date(System.currentTimeMillis());
+            Date now = new Date( roundToDay(System.currentTimeMillis()) );
             if (skipDay.before(now)){ //skipday has passed
                 skipToday = false;
                 skippedDays++;
+
+                return true;
             }
         }
+        return false;
     }
 
     /** Returns clock that shows how long until left lens needs to be removed and whether its negative
@@ -166,7 +171,7 @@ public class LensesSettings {
             //Have to cast to double and then long otherwise it gives the wrong output
 
             long diff = now.getTime() - end.getTime();
-            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) +1) ); //-1 so it shows days left (so replace on 0)
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) ); //(so replace on 0)
 
             if ( diff >= 0 ){ //if now is after end
                 isNegative = true;
@@ -189,7 +194,7 @@ public class LensesSettings {
             //Have to cast to double and then long otherwise it gives the wrong output
 
             long diff = now.getTime() - end.getTime();
-            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) +1) ); //-1 so it shows days left (so replace on 0)
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) );
 
             if ( diff >= 0 ){ //if now is after end
                 isNegative = true;
