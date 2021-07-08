@@ -33,12 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
     public LensesSettings sets = new LensesSettings();
     public SharedPreferences prefs;
+    public SharedPreferences.Editor prefEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefEditor = prefs.edit();
 
         //region Load settings into sets
         //lens wearing and notification
@@ -47,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         sets.earlyRemoveLensesNotification = prefs.getBoolean("earlyRemoveLensesNotification", sets.earlyRemoveLensesNotification);
 
         //lens wearing time
-        sets.startLensLeft = new Time( prefs.getLong("startLensLeft", sets.startLensLeft.getTime()) );
-        sets.startLensRight = new Time( prefs.getLong("startLensRight", sets.startLensRight.getTime()) );
+        sets.startLensLeft = new Date( prefs.getLong("startLensLeft", sets.startLensLeft.getTime()) );
+        sets.startLensRight = new Date( prefs.getLong("startLensRight", sets.startLensRight.getTime()) );
 
         //lens replacing
         sets.lensMaxUses = prefs.getInt("lensMaxUses", sets.lensMaxUses);
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         //lens wearing date
         sets.newLensLeft = new Date( prefs.getLong("newLensLeft", sets.newLensLeft.getTime()) );
-        sets.newLensLeft = new Date( prefs.getLong("newLensRight", sets.newLensRight.getTime()) );
+        sets.newLensRight = new Date( prefs.getLong("newLensRight", sets.newLensRight.getTime()) );
 
         //lens replace notification
         sets.earlyReplaceLenses = prefs.getInt("earlyReplaceLenses", sets.earlyReplaceLenses);
@@ -82,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Boolean succes = prefs.edit().commit();
+        Boolean succes = prefEditor.commit();
         if (!succes){
             Toast.makeText(this, "Failed to save your data!", Toast.LENGTH_LONG).show(); //error message if fail
+        }else{
+            Toast.makeText(this, "Saved your data", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -97,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensLeft = new Time(0);
+                        prefEditor.putLong("startLensLeft", 0);
 
                         //timer turns off, so button turns to start button
                         ((TextView) button).setText(R.string.home_reset_left);
@@ -115,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensLeft = new Time(System.currentTimeMillis());
+                        prefEditor.putLong("startLensLeft", sets.startLensLeft.getTime());
 
                         //timer turns on, so button turns to stop button
                         ((TextView) button).setText(R.string.home_stop_left);
@@ -136,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensRight = new Time(0);
+                        prefEditor.putLong("startLensRight", 0);
 
                         //timer turns off, so button turns to start button
                         ((TextView) button).setText(R.string.home_reset_right);
@@ -154,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     if (which == DialogInterface.BUTTON_POSITIVE){
                         sets.startLensRight = new Time(System.currentTimeMillis());
+                        prefEditor.putLong("startLensRight", sets.startLensRight.getTime());
 
                         //timer turns on, so button turns to stop button
                         ((TextView) button).setText(R.string.home_stop_right);
@@ -190,6 +198,9 @@ public class MainActivity extends AppCompatActivity {
                             cal.set(Calendar.DAY_OF_MONTH, sDay);
 
                             sets.newLensLeft = new Date( sets.roundToDay(cal.getTimeInMillis()) ); //round to day to make sure Calendar didn't add hour/minute etc. of today
+                            prefEditor.putLong("newLensLeft", sets.newLensLeft.getTime());
+
+                            ((TextView) findViewById(R.id.lastDayLeft)).setText( sets.lastFullLeft() ); //update text under counter
 
                             //TODO save
                         } // \/ get day, month and year from set date to show as default value in time picker
@@ -221,6 +232,9 @@ public class MainActivity extends AppCompatActivity {
                         cal.set(Calendar.DAY_OF_MONTH, sDay);
 
                         sets.newLensRight = new Date( sets.roundToDay(cal.getTimeInMillis()) ); //round to day to make sure Calendar didn't add hour/minute etc. of today
+                        prefEditor.putLong("newLensRight", sets.newLensRight.getTime());
+
+                        ((TextView) findViewById(R.id.lastDayRight)).setText( sets.lastFullRight() ); //update text under counter
 
                         //TODO save
                     } // \/ get day, month and year from set date to show as default value in time picker
@@ -256,7 +270,8 @@ public class MainActivity extends AppCompatActivity {
                         textInput.setText( formatter.format(setTime) );
 
                         sets.replaceLensesNotification = setTime;
-                        //TODO save
+                        prefEditor.putLong("replaceLensesNotification", setTime.getTime());
+
                     } // \/ get hour and minute from set time to show as default value in time picker
                 }, Integer.parseInt(hourFormat.format(sets.replaceLensesNotification)), Integer.parseInt(minuteFormat.format(sets.replaceLensesNotification)), true);
 
