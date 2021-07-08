@@ -249,7 +249,22 @@ public class MainActivity extends AppCompatActivity {
     //Skip today switch
     public void skipDay(View button){
         CheckBox checkBox = (CheckBox)button;
-        Log.d("Debug", "Skip day " + button.getId() + " " + checkBox.isChecked());
+
+        sets.skipToday = checkBox.isChecked();
+        prefEditor.putBoolean("skipToday", sets.skipToday);
+
+        updateSkipDate(sets.skipToday);
+    }
+    public void updateSkipDate(Boolean check){
+        if (check){
+            sets.skipDay = new Date( sets.roundToDay(System.currentTimeMillis()) );
+
+            prefEditor.putLong("skipDay", sets.skipDay.getTime() );
+        }else{
+            sets.skipDay = new Date(0);
+
+            prefEditor.putLong("skipDay", 0);
+        }
     }
 
     //Timepicker
