@@ -198,4 +198,32 @@ public class LensesSettings {
 
         return new Pair(out, isNegative);
     }
+
+    /**
+     * See on what day you need to replace left lens
+     * @return string that shows on what date you need to replace the left lens
+     */
+    public String lastFullLeft(){
+        if ( !newLensLeft.equals(new Time(0)) ) { //if lens is in
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+            Date end = new Date( newLensLeft.getTime() + (long)Math.round((double)lensMaxUses * (double)milliInDay)); //start time + maxWearTime*(millis in hour)
+
+            return formatter.format(end);
+        }
+        return "";
+    }
+
+    /**
+     * See on what day you need to replace your right lens
+     * @return string that shows on what date you need to replace your right lens
+     */
+    public String lastFullRight(){
+        if ( !newLensRight.equals(new Time(0)) ) { //if lens is in
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+            Date end = new Date( newLensRight.getTime() + (long)Math.round((double)lensMaxUses * (double)milliInDay)); //start time + maxWearTime*(millis in hour)
+
+            return formatter.format(end);
+        }
+        return "";
+    }
 }
