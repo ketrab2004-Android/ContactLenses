@@ -9,6 +9,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -90,6 +91,12 @@ public class HomeFragment extends Fragment {
             button.setText(R.string.home_stop_right); //change play button to stop button
             button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_stop_24dp, 0,0,0);
         }
+
+        if (sets.resetSkipDay()){ //check for skip day
+            ((MainActivity)getActivity()).updateSkipDate(sets.skipToday); //if skip day whas yesterday save new values
+        }
+        ((CheckBox) viewGroup.findViewById(R.id.buttonFullSkip)).setChecked( sets.skipToday ); //load in checkbox value into checkbox
+        //((TextView) viewGroup.findViewById(R.id.skippedDaysCounter)).setText( sets.skippedDays ); //load in skipped days //TODO fix Resources$NotFoundException: String resource ID #0x1
     }
 
     private void updateCountdownDay(){
