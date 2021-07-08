@@ -12,11 +12,11 @@
     <dimen name="countdown_subtext_size">10sp</dimen>
 
     <dimen name="countdown_radius">10dp</dimen>
-    <dimen name="countdown_elevation">10dp</dimen>
+    <dimen name="countdown_elevation">15dp</dimen>
 
     <dimen name="button_padding">12.5dp</dimen>
     <dimen name="card_margin">15dp</dimen>
-    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="card_elevation">20dp</dimen>
     <dimen name="card_radius">10dp</dimen>
 
     <dimen name="divider_hor_margin">15dp</dimen>
