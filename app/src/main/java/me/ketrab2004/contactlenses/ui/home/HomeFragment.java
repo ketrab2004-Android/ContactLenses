@@ -39,6 +39,8 @@ public class HomeFragment extends Fragment {
 
     TextView leftFullCountdown;
     TextView rightFullCountdown;
+    TextView leftFullLast;
+    TextView rightFullLast;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,9 +54,7 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    private LensesSettings updateSets(){
-        return sets = ((MainActivity)getActivity()).sets;
-    }
+    private LensesSettings updateSets(){ return sets = ((MainActivity)getActivity()).sets; }
 
     @Override
     public void onStart() {
@@ -67,8 +67,11 @@ public class HomeFragment extends Fragment {
 
         leftFullCountdown = (TextView) viewGroup.findViewById(R.id.CountdownFullLeft);
         rightFullCountdown = (TextView) viewGroup.findViewById(R.id.CountdownFullRight);
+        leftFullLast = (TextView) viewGroup.findViewById(R.id.lastDayLeft);
+        rightFullLast = (TextView) viewGroup.findViewById(R.id.lastDayRight);
 
         updateCountdownDayEnd();
+        updateCountdownFullEnd();
 
         if (updateClockThread.getState() == Thread.State.NEW)
         {
@@ -88,7 +91,7 @@ public class HomeFragment extends Fragment {
             button.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_home_stop_24dp, 0,0,0);
         }
     }
-    
+
     private void updateCountdownDay(){
         Pair<String, Boolean> left = sets.timerDayLeft();
         leftDayCountdown.setText(left.first);
@@ -114,11 +117,6 @@ public class HomeFragment extends Fragment {
             }
             rightDayCountdown.setTextColor(typedValue.data);
         }
-    }
-
-    private void updateCountdownDayEnd(){
-        leftDayLast.setText( sets.lastDayLeft() );
-        rightDayLast.setText( sets.lastDayRight() );
     }
 
     private void updateCountdownFull(){
@@ -148,6 +146,16 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private void updateCountdownDayEnd(){
+        leftDayLast.setText( sets.lastDayLeft() );
+        rightDayLast.setText( sets.lastDayRight() );
+    }
+
+    private void updateCountdownFullEnd(){
+        leftFullLast.setText( sets.lastFullLeft() );
+        rightFullLast.setText( sets.lastFullRight() );
+    }
+
     Boolean updateClockLoop = true;
     private Thread updateClockThread = new Thread() {
         @Override
@@ -158,7 +166,7 @@ public class HomeFragment extends Fragment {
                     //updateCountdownDayEnd(); //only necessary when reload Home
 
                     updateCountdownFull();
-                    //TODO updateCountdownFullEnd (under text)
+                    //updateCountdownFullEnd(); //only necessary when reload Home
 
                     sleep(999);
                 }
