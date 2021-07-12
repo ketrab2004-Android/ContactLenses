@@ -176,10 +176,10 @@ public class LensesSettings {
             Date end = new Date( roundToDay(newLensLeft.getTime() + (long)Math.round((double) lensMaxUses * (double)milliInDay) )); //start time + lensMaxUses* (milli in day)
             //Have to cast to double and then long otherwise it gives the wrong output
 
-            long diff = now.getTime() - end.getTime();
-            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) + skippedDaysLeft + (skipToday ? 1 : 0) ); //(so replace on 0)
+            long diff = end.getTime() - now.getTime()       + (skippedDaysLeft + (skipToday ? 1 : 0)) * milliInDay;
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) )); //(so replace on 0)
 
-            if ( diff >= 0 ){ //if now is after end
+            if ( diff <= 0 ){ //if now is after end
                 isNegative = true;
             }
         }
@@ -199,10 +199,10 @@ public class LensesSettings {
             Date end = new Date( roundToDay(newLensRight.getTime() + (long)Math.round((double) lensMaxUses * (double)milliInDay) )); //start time + lensMaxUses* (milli in day)
             //Have to cast to double and then long otherwise it gives the wrong output
 
-            long diff = now.getTime() - end.getTime();
-            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) + skippedDaysRight + (skipToday ? 1 : 0) );
+            long diff = end.getTime() - now.getTime()       + (skippedDaysRight + (skipToday ? 1 : 0)) * milliInDay;
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ));
 
-            if ( diff >= 0 ){ //if now is after end
+            if ( diff <= 0 ){ //if now is after end
                 isNegative = true;
             }
         }
