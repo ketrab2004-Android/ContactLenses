@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         sets.earlyReplaceLensesNotification = prefs.getBoolean("earlyReplaceLensesNotification", sets.earlyReplaceLensesNotification);
 
         //skip day stuff
-        sets.skippedDays = prefs.getInt("skippedDays", sets.skippedDays);
+        sets.skippedDaysLeft = prefs.getInt("skippedDaysLeft", sets.skippedDaysLeft);
+        sets.skippedDaysRight = prefs.getInt("skippedDaysRight", sets.skippedDaysRight);
         sets.skipToday = prefs.getBoolean("skipToday", sets.skipToday);
         sets.skipDay = new Date( prefs.getLong("skipDay", sets.skipDay.getTime()) );
         //endregion Load settings into sets
@@ -202,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
                             ((TextView) findViewById(R.id.lastDayLeft)).setText( sets.lastFullLeft() ); //update text under counter
 
-                            //TODO save
+                            sets.skippedDaysLeft = 0; //set skipped days back to 0
                         } // \/ get day, month and year from set date to show as default value in time picker
                     },
                     Integer.parseInt(yearFormat.format(dateToUse)),
@@ -236,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
 
                         ((TextView) findViewById(R.id.lastDayRight)).setText( sets.lastFullRight() ); //update text under counter
 
-                        //TODO save
+                        sets.skippedDaysRight = 0; //set skipped days back to 0
                     } // \/ get day, month and year from set date to show as default value in time picker
                 },
                 Integer.parseInt(yearFormat.format(dateToUse)),
@@ -257,14 +258,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void updateSkipDate(Boolean check){
         if (check){
-            sets.skipDay = new Date( sets.roundToDay(System.currentTimeMillis()) );
-
             prefEditor.putLong("skipDay", sets.skipDay.getTime() );
         }else{
-            sets.skipDay = new Date(0);
-
             prefEditor.putLong("skipDay", 0);
         }
+        prefEditor.putInt("skippedDaysLeft", sets.skippedDaysLeft);
+        prefEditor.putInt("skippedDaysRight", sets.skippedDaysRight);
+
+        prefEditor.putBoolean("skipToday", sets.skipToday);
     }
 
     //Timepicker
