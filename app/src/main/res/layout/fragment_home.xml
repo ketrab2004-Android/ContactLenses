@@ -392,20 +392,6 @@
                             android:text="@string/home_skip_day"
                             android:onClick="skipDay"/>
 
-                            <TextView
-                                android:id="@+id/skippedDaysCounter"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="5dp"
-                                android:layout_weight="10"
-                                android:textAlignment="textEnd"
-                                tools:text="@sample/numbers.json/numbers/numbers_0.30/number" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0"
-                                android:text="@string/home_skipped_title" />
-
                         </TableRow>
 
 
