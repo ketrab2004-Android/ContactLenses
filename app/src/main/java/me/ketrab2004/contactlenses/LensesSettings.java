@@ -46,7 +46,8 @@ public class LensesSettings {
     public Date newLensRight = new Date(0);
 
     /** How many days have been skipped (get added to max uses) */
-    public int skippedDays = 0;
+    public int skippedDaysLeft = 0;
+    public int skippedDaysRight = 0;
     /** Whether today is being skipped */
     public boolean skipToday = false;
     /** Day on which to skip */
@@ -62,10 +63,15 @@ public class LensesSettings {
             Date now = new Date( roundToDay(System.currentTimeMillis()) );
             if (skipDay.before(now)){ //skipday has passed
                 skipToday = false;
-                skippedDays++;
+                skippedDaysLeft++;
+                skippedDaysRight++;
+
+                skipDay = new Date( roundToDay(System.currentTimeMillis()) );
 
                 return true;
             }
+            //else because after return
+            skipDay = new Date(0);
         }
         return false;
     }
@@ -171,7 +177,7 @@ public class LensesSettings {
             //Have to cast to double and then long otherwise it gives the wrong output
 
             long diff = now.getTime() - end.getTime();
-            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) ); //(so replace on 0)
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) + skippedDaysLeft + (skipToday ? 1 : 0) ); //(so replace on 0)
 
             if ( diff >= 0 ){ //if now is after end
                 isNegative = true;
@@ -194,7 +200,7 @@ public class LensesSettings {
             //Have to cast to double and then long otherwise it gives the wrong output
 
             long diff = now.getTime() - end.getTime();
-            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) );
+            out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ) + skippedDaysRight + (skipToday ? 1 : 0) );
 
             if ( diff >= 0 ){ //if now is after end
                 isNegative = true;
