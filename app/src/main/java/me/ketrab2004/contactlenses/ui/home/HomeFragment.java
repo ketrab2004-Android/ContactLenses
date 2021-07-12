@@ -173,7 +173,7 @@ public class HomeFragment extends Fragment {
                     //updateCountdownDayEnd(); //only necessary when reload Home
 
                     updateCountdownFull();
-                    //updateCountdownFullEnd(); //only necessary when reload Home
+                    updateCountdownFullEnd(); //also update every second (because checkbox can change it and mainActivity > homeFragment doesn't want to work)
 
                     sleep(999);
                 }
