@@ -163,7 +163,8 @@ public class LensesSettings {
         }
         return out;
     }
-
+    public int getSkippedDaysLeft() { return (skippedDaysLeft + (skipToday ? 1 : 0)); }
+    public int getSkippedDaysRight() { return (skippedDaysRight + (skipToday ? 1 : 0)); }
     /** Returns int that shows how long until left lens needs to be replaced and whether its negative
      * @return Pair< String, Boolean >
      */
@@ -176,7 +177,7 @@ public class LensesSettings {
             Date end = new Date( roundToDay(newLensLeft.getTime() + (long)Math.round((double) lensMaxUses * (double)milliInDay) )); //start time + lensMaxUses* (milli in day)
             //Have to cast to double and then long otherwise it gives the wrong output
 
-            long diff = end.getTime() - now.getTime()       + (skippedDaysLeft + (skipToday ? 1 : 0)) * milliInDay;
+            long diff = end.getTime() - now.getTime()       + getSkippedDaysLeft() * milliInDay;
             out = String.valueOf( Math.abs(Math.round(diff / milliInDay) )); //(so replace on 0)
 
             if ( diff <= 0 ){ //if now is after end
@@ -199,7 +200,7 @@ public class LensesSettings {
             Date end = new Date( roundToDay(newLensRight.getTime() + (long)Math.round((double) lensMaxUses * (double)milliInDay) )); //start time + lensMaxUses* (milli in day)
             //Have to cast to double and then long otherwise it gives the wrong output
 
-            long diff = end.getTime() - now.getTime()       + (skippedDaysRight + (skipToday ? 1 : 0)) * milliInDay;
+            long diff = end.getTime() - now.getTime()       + getSkippedDaysRight() * milliInDay;
             out = String.valueOf( Math.abs(Math.round(diff / milliInDay) ));
 
             if ( diff <= 0 ){ //if now is after end
@@ -217,7 +218,7 @@ public class LensesSettings {
     public String lastFullLeft(){
         if ( !newLensLeft.equals(new Time(0)) ) { //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
-            Date end = new Date( newLensLeft.getTime() + (long)Math.round((double)lensMaxUses * (double)milliInDay)); //start time + maxWearTime*(millis in hour)
+            Date end = new Date( newLensLeft.getTime() + (long)Math.round((double)(lensMaxUses + getSkippedDaysLeft()) * (double)milliInDay)); //start time + maxWearTime*(millis in hour)
 
             return formatter.format(end);
         }
@@ -231,7 +232,7 @@ public class LensesSettings {
     public String lastFullRight(){
         if ( !newLensRight.equals(new Time(0)) ) { //if lens is in
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
-            Date end = new Date( newLensRight.getTime() + (long)Math.round((double)lensMaxUses * (double)milliInDay)); //start time + maxWearTime*(millis in hour)
+            Date end = new Date( newLensRight.getTime() + (long)Math.round((double)(lensMaxUses + getSkippedDaysRight()) * (double)milliInDay)); //start time + maxWearTime*(millis in hour)
 
             return formatter.format(end);
         }
