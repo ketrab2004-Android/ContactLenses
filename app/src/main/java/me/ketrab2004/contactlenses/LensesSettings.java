@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class LensesSettings {
     public static final int milliInSecond =    1_000;
@@ -84,15 +85,18 @@ public class LensesSettings {
         Boolean isNegative = false;
 
         if ( !startLensLeft.equals(new Time(0)) ){ //if lens is in
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US);
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.UK);
+            formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+
             Date now = new Date(System.currentTimeMillis());
             Date end = new Date( startLensLeft.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
-            if ( now.getTime() - end.getTime() > 0 ){ //if now is after end
+            long diff = end.getTime() - now.getTime();
+            if ( diff < 0 ){ //if now is after end
                 isNegative = true;
             }
 
-            out = formatter.format(new Time( Math.abs( end.getTime() - now.getTime() ) + (isNegative ? 0 : 1000) ));
+            out = formatter.format(new Time( Math.abs( diff ) ));
         }
 
         return new Pair(out, isNegative);
@@ -106,15 +110,18 @@ public class LensesSettings {
         Boolean isNegative = false;
 
         if ( !startLensRight.equals(new Time(0)) ){ //if lens is in
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.US);
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.UK);
+            formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+
             Date now = new Date(System.currentTimeMillis());
             Date end = new Date( startLensRight.getTime() + (long)Math.round(lensMaxWearTime * milliInHour)); //start time + maxWearTime*(millis in hour)
 
-            if ( now.getTime() - end.getTime() > 0 ){ //if now is after end
+            long diff = end.getTime() - now.getTime();
+            if ( diff < 0 ){ //if now is after end
                 isNegative = true;
             }
 
-            out = formatter.format(new Time( Math.abs( end.getTime() - now.getTime() ) + (isNegative ? 0 : 1000) ));
+            out = formatter.format(new Time( Math.abs( diff ) ));
         }
 
         return new Pair(out, isNegative);
@@ -163,6 +170,7 @@ public class LensesSettings {
         }
         return out;
     }
+
     public int getSkippedDaysLeft() { return (skippedDaysLeft + (skipToday ? 1 : 0)); }
     public int getSkippedDaysRight() { return (skippedDaysRight + (skipToday ? 1 : 0)); }
     /** Returns int that shows how long until left lens needs to be replaced and whether its negative
