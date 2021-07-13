@@ -278,6 +278,8 @@ public class MainActivity extends AppCompatActivity {
         // time picker dialog
         SimpleDateFormat hourFormat = new SimpleDateFormat("HH", Locale.CANADA);
         SimpleDateFormat minuteFormat = new SimpleDateFormat("mm", Locale.CANADA);
+        hourFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        minuteFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         TimePickerDialog picker = new TimePickerDialog(MainActivity.this,
 
