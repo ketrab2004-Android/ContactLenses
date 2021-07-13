@@ -140,7 +140,7 @@ public class LensesSettings {
             out = formatter.format(end);
 
             end = new Date( roundToDay(end.getTime()) ); //round time to day
-            if (end.getTime() != roundToDay(System.currentTimeMillis()) ){ //rounded to day, so if end is another day
+            if (end.getTime() != roundToDay(System.currentTimeMillis() +getTimezoneOffset()) ){ //rounded to day, so if end is another day (add timezone to remove offset)
                 formatter = new SimpleDateFormat("  dd/MM/yy", Locale.CANADA);
 
                 out += formatter.format(end);
@@ -162,7 +162,7 @@ public class LensesSettings {
             out = formatter.format(end);
 
             end = new Date( roundToDay(end.getTime()) ); //round time to day
-            if (end.getTime() != roundToDay(System.currentTimeMillis()) ){ //rounded to day, so if end is another day
+            if (end.getTime() != roundToDay(System.currentTimeMillis() +getTimezoneOffset() ) ){ //rounded to day, so if end is another day (add timezone to remove offset)
                 formatter = new SimpleDateFormat("  dd/MM/yy", Locale.CANADA);
 
                 out += formatter.format(end);
@@ -170,6 +170,8 @@ public class LensesSettings {
         }
         return out;
     }
+
+    public long getTimezoneOffset() { return TimeZone.getDefault().getOffset(System.currentTimeMillis()); }
 
     public int getSkippedDaysLeft() { return (skippedDaysLeft + (skipToday ? 1 : 0)); }
     public int getSkippedDaysRight() { return (skippedDaysRight + (skipToday ? 1 : 0)); }
