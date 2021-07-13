@@ -183,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.CANADA);
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.CANADA);
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.CANADA);
+        dayFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        monthFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        yearFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         Date dateToUse = sets.newLensLeft;
         if (dateToUse.equals(new Date(0))){ //if newLens not yet set default pick is today
@@ -193,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker dp, int sYear, int sMonth, int sDay) {
-                            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
                             Calendar cal = Calendar.getInstance();
                             cal.set(Calendar.YEAR, sYear);
                             cal.set(Calendar.MONTH, sMonth);
@@ -217,6 +219,9 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.CANADA);
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.CANADA);
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.CANADA);
+        dayFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        monthFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        yearFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         Date dateToUse = sets.newLensRight;
         if (dateToUse.equals(new Date(0))){ //if newLens not yet set default pick is today
@@ -227,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker dp, int sYear, int sMonth, int sDay) {
-                        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
                         Calendar cal = Calendar.getInstance();
                         cal.set(Calendar.YEAR, sYear);
                         cal.set(Calendar.MONTH, sMonth);
