@@ -171,7 +171,7 @@ public class LensesSettings {
         return out;
     }
 
-    public long getTimezoneOffset() { return TimeZone.getDefault().getOffset(System.currentTimeMillis()); }
+    public static long getTimezoneOffset() { return TimeZone.getDefault().getOffset(System.currentTimeMillis()); }
 
     public int getSkippedDaysLeft() { return (skippedDaysLeft + (skipToday ? 1 : 0)); }
     public int getSkippedDaysRight() { return (skippedDaysRight + (skipToday ? 1 : 0)); }
