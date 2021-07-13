@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import me.ketrab2004.contactlenses.LensesSettings;
 import me.ketrab2004.contactlenses.MainActivity;
@@ -145,7 +146,11 @@ public class SettingsFragment extends Fragment {
         checkEarlyRemoveLenses.setChecked( sets.earlyRemoveLensesNotification );
 
         textLensMaxUses.setText( String.valueOf(sets.lensMaxUses) );
-        buttonReplaceLensesTime.setText( new SimpleDateFormat("HH:mm", Locale.CANADA).format( sets.replaceLensesNotification ) );
+
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+        buttonReplaceLensesTime.setText( formatter.format( sets.replaceLensesNotification ) );
+
         textEarlyReplaceLenses.setText( String.valueOf( sets.earlyReplaceLenses ) );
         checkEarlyReplaceLenses.setChecked( sets.earlyReplaceLensesNotification );
     }

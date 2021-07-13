@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -280,13 +281,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
                         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.CANADA);
-                        Time setTime = new Time( sHour * sets.milliInHour + sMinute * sets.milliInMinute);
+                        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        Time setTime = new Time( sHour * LensesSettings.milliInHour + sMinute * LensesSettings.milliInMinute);
 
                         TextView textInput = (TextView) view;
                         textInput.setText( formatter.format(setTime) );
 
                         sets.replaceLensesNotification = setTime;
-                        prefEditor.putLong("replaceLensesNotification", setTime.getTime());
+                        prefEditor.putLong("replaceLensesNotification", sets.replaceLensesNotification.getTime());
 
                     } // \/ get hour and minute from set time to show as default value in time picker
                 }, Integer.parseInt(hourFormat.format(sets.replaceLensesNotification)), Integer.parseInt(minuteFormat.format(sets.replaceLensesNotification)), true);
