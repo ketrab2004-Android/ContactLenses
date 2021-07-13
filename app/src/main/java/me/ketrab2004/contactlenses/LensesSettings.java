@@ -78,7 +78,7 @@ public class LensesSettings {
     }
 
     /** Returns clock that shows how long until left lens needs to be removed and whether its negative
-     * @return Pair< String, Boolean >
+     * @return {@link Pair}<{@link String}, {@link Boolean}>
      */
     public Pair<String, Boolean> timerDayLeft(){
         String out = "--:--:--";
@@ -103,7 +103,7 @@ public class LensesSettings {
     }
 
     /** Returns clock that shows how long until right lens needs to be removed and whether its negative
-     * @return Pair< String, Boolean >
+     * @return {@link Pair}<{@link String}, {@link Boolean}>
      */
     public Pair<String, Boolean> timerDayRight(){
         String out = "--:--:--";
@@ -174,7 +174,7 @@ public class LensesSettings {
     public int getSkippedDaysLeft() { return (skippedDaysLeft + (skipToday ? 1 : 0)); }
     public int getSkippedDaysRight() { return (skippedDaysRight + (skipToday ? 1 : 0)); }
     /** Returns int that shows how long until left lens needs to be replaced and whether its negative
-     * @return Pair< String, Boolean >
+     * @return {@link Pair}<{@link String}, {@link Boolean}>
      */
     public Pair<String, Boolean> timerFullLeft(){
         String out = "--";
@@ -197,7 +197,7 @@ public class LensesSettings {
     }
 
     /** Returns int that shows how long until right lens needs to be replaced and whether its negative
-     * @return Pair< String, Boolean >
+     * @return {@link Pair}<{@link String}, {@link Boolean}>
      */
     public Pair<String, Boolean> timerFullRight(){
         String out = "--";
