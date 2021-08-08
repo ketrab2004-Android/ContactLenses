@@ -54,7 +54,7 @@ public class LensesSettings {
     /** Day on which to skip */
     public Date skipDay = new Date(0);
 
-    public long roundToDay(long in){    return (long) (Math.floor( (double)in / (double)milliInDay ) * milliInDay);  }
+    public static long roundToDay(long in){    return (long) (Math.floor( (double)in / (double)milliInDay ) * milliInDay);  }
 
     /** Checks if skipDay should be reset
      * @return whether or not skipDay was changed
@@ -67,12 +67,12 @@ public class LensesSettings {
                 skippedDaysLeft++;
                 skippedDaysRight++;
 
-                skipDay = new Date( roundToDay(System.currentTimeMillis()) );
+                skipDay = new Date( 0 );
 
                 return true;
             }
             //else because after return
-            skipDay = new Date(0);
+            skipDay = new Date( roundToDay(System.currentTimeMillis()) );
         }
         return false;
     }
