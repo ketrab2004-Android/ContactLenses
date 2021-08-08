@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //region lens buttons (home)
     //Start lens counter (day)
     public void toggleLeft(View button){
         if (!sets.startLensLeft.equals(new Time(0))){
@@ -206,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
                             ((TextView) findViewById(R.id.lastDayLeft)).setText( sets.lastFullLeft() ); //update text under counter
 
+                            prefEditor.putInt("skippedDaysLeft", 0);
                             sets.skippedDaysLeft = 0; //set skipped days back to 0
                         } // \/ get day, month and year from set date to show as default value in time picker
                     },
@@ -242,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
                         ((TextView) findViewById(R.id.lastDayRight)).setText( sets.lastFullRight() ); //update text under counter
 
+                        prefEditor.putInt("skippedDaysRight", 0);
                         sets.skippedDaysRight = 0; //set skipped days back to 0
                     } // \/ get day, month and year from set date to show as default value in time picker
                 },
@@ -251,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
         picker.getDatePicker().setMaxDate( System.currentTimeMillis() ); //max date is today, cant pick future
         picker.show();
     }
+    //endregion lens buttons (home)
 
     //Skip today switch
     public void skipDay(View button){
@@ -259,14 +263,14 @@ public class MainActivity extends AppCompatActivity {
         sets.skipToday = checkBox.isChecked();
         prefEditor.putBoolean("skipToday", sets.skipToday);
 
+        sets.skipDay = new Date( checkBox.isChecked() ? LensesSettings.roundToDay(System.currentTimeMillis()) : 0 );
+        prefEditor.putLong("skipDay", sets.skipDay.getTime());
+
         updateSkipDate(sets.skipToday);
     }
     public void updateSkipDate(Boolean check){
-        if (check){
-            prefEditor.putLong("skipDay", sets.skipDay.getTime() );
-        }else{
-            prefEditor.putLong("skipDay", 0);
-        }
+        prefEditor.putLong("skipDay", check ? 0 : sets.skipDay.getTime()); //don't bother getting time from skipDay when check is true
+
         prefEditor.putInt("skippedDaysLeft", sets.skippedDaysLeft);
         prefEditor.putInt("skippedDaysRight", sets.skippedDaysRight);
 
